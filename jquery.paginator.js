@@ -1,8 +1,21 @@
 (function($) {
-    // Shell for your plugin code
+    /**
+     * How to use this plugin :
+     * 
+     * <ul id="mylist">
+     * </ul>
+     * 
+     * <script type=text/javascript>
+     * 
+     * $('#mylist').paginate('remoteUrl');
+     * 
+     * </script>
+     * 
+     * Will create a button that , when clicked, will get the next page of the list
+     */
     $.fn.paginate = function (url, options) {
 
-        var _url, $list_el, _opts, _defaultOptions, $button, _init, _init_button, _getNextPage, _set_content;
+        var _url, $list_el, _opts, _defaultOptions, $button, _init, _init_button, _set_content;
 
         if(url == undefined ){
             throw 'You need to define a URL in order to use the paginator';
@@ -16,7 +29,7 @@
             page_size: 10,
             nr_pages: undefined,
             data: {}, // extra data to be sent to the server ( e.g. filtering data )
-            button_id: '#paginator_button',
+            button_id: 'paginator_button',
             locale: {
                 get_next: 'Ver más',
                 no_more_data: 'No hay más datos'
@@ -24,7 +37,7 @@
         };
     
         // Options, defined? otherwise, empty obj
-        options = {} || options;
+        options = options || {};
     
         // Final options, merged default and comming
         _opts = $.extend(_defaultOptions, options);
@@ -42,12 +55,12 @@
             }
     
             // Events for the button button
-            $button.on('click', _getNextPage);
+            $button.on('click', $.fn.paginate.getNextPage);
 	
         };
     
         // This does the Ajax request
-        _getNextPage= function () {
+        $.fn.paginate.getNextPage= function () {
             // Get current page and increment it
             _opts.current_page += 1;
             $.post(_url, {
