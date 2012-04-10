@@ -85,6 +85,10 @@
         return this.each(function() {
             // Do something to each item
             $list_el = $(this);
+            if(_opts.nr_pages != undefined && _opts.nr_pages === 0){
+                // Do not do anything ( do not event show the paginator button )
+                return;
+            }
             
             // Initializes the button
             _init_button();
