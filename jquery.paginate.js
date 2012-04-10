@@ -32,7 +32,7 @@
             button_id: 'paginator_button',
             locale: {
                 get_next: 'Ver más',
-                no_more_data: 'No hay más datos'
+                no_more_data: ''
             }
         };
     
@@ -50,7 +50,7 @@
             {
                 $button = $(_opts.button_id);
             } else {
-                $button = $('<button id="' + _opts.button_id + '" >' + _opts.locale.get_next + '</button>');
+                $button = $('<div id="' + _opts.button_id + '" >' + _opts.locale.get_next + '</div>');
                 $list_el.append($button);
             }
     
