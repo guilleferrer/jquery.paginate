@@ -28,6 +28,13 @@ $(function(){
         })
         ok( $('#miboton').length , "button created" );
     });
+    
+    test('do not paginate if nr_pages = 0', function () {
+        $('#mylist').paginate('myUrl', {
+            nr_pages : 0
+        })
+        equal( $('#paginator_button').length, 0, "do not create the paginator button if the number of pages is 0" );
+    });
 
     module("Getting pages");
     test('calling the server', function () {
