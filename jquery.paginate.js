@@ -71,14 +71,14 @@
         // Sets the content in the  dom, depending on the opts.action strategy
         _set_content = function (data, textStatus, jqXHR) {
             var result = $.parseJSON(data);
-            if(result.count != _opts.page_size){
-                $button.remove();
-                $list_el.append('<span class="paginator_no_more_data">'+_opts.locale.no_more_data  + '</span>');
-            }
             if(_opts.action == 'append'){
                 $button.before(result.list);
             } else if (_opts.action == 'replace') {
                 $list_el.html(result.list);
+            }
+            if(result.count != _opts.page_size){
+                $button.remove();
+                $list_el.append('<span class="paginator_no_more_data">'+_opts.locale.no_more_data  + '</span>');
             }
         };
 
